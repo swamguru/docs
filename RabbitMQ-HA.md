@@ -142,6 +142,4 @@ Add this line to the file
   [{cluster_nodes, {['rabbit@node-01', 'rabbit@node-02', 'rabbit@node-03'], ram}}]}].
  ```
 
-
- 
- 
+##Successfully achieved RabbitMQ HA with HAProxy
