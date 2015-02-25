@@ -4,9 +4,9 @@ High avaiable queues is achieved through Clustering.
     
 >Clustering connects multiple nodes, to form a single logical broker. Virtual hosts, exchanges, users and permissions are mirrored across all nodes in a cluster. A client connecting to any node can see all the queues in a cluster.
 
-Types of Queue High availability
+Types of Queue High availability<br>
 1.	Active/Passive - Stateless service would maintain a redundant instance that can be brought online when required. Requests may be handled using a virtual IP address to facilitate return to service with minimal reconfiguration required.
-Master – Salve Concept
+Master – Salve Concept<br>
 2.	Active/Active -  Stateless service would maintain a redundant instance, and requests are load balanced using a virtual IP address and a load balancer such as HAProxy. Master – Master concept
 
 Here we follow Active/Active High available queues.
