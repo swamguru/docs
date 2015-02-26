@@ -1,6 +1,6 @@
 #Creating High Available RabbitMQs with HA Proxy
 
-High avaiable queues is achieved through Clustering.
+High available queues is achieved through Clustering.
     
 >Clustering connects multiple nodes, to form a single logical broker. Virtual hosts, exchanges, users and permissions are mirrored across all nodes in a cluster. A client connecting to any node can see all the queues in a cluster.
 
