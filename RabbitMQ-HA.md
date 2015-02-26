@@ -72,9 +72,9 @@ At Node1, do the following
 Now we have to create TCP proxy port 5670 on Node1 for HAProxy. Connections to this proxy will be distributed in a round-robin manner to the three RabbitMQ brokers, each listening on rabbitMQ port 5672.
 
 Consider the node IP as follows
->Node1 - 10.200.84.101<br>
->Node2 - 10.200.84.102<br>
->Node3 - 10.200.84.103
+>Node1 - 192.168.10.1<br>
+>Node2 - 192.168.10.2<br>
+>Node3 - 192.168.10.3
 
 Edit the HAProxy configuration file to update with TCP Proxy port as 5670
 ```sh
@@ -92,12 +92,12 @@ defaults
     timeout client 100s
     timeout server 100s
 
-listen rabbitmq 10.200.84.101:5670
+listen rabbitmq 192.168.10.1:5670
     mode tcp
     balance roundrobin
-    server node-01 10.200.84.101:5672 check inter 5s rise 2 fall 3
-    server node-02 10.200.84.102:5672 check inter 5s rise 2 fall 3
-    server node-03 10.200.84.103:5672 check inter 5s rise 2 fall 3
+    server node-01 192.168.10.1:5672 check inter 5s rise 2 fall 3
+    server node-02 192.168.10.2:5672 check inter 5s rise 2 fall 3
+    server node-03 192.168.10.3:5672 check inter 5s rise 2 fall 3
 ```
 Now we are ready to start the HAProxy.
 ```sh
@@ -108,27 +108,27 @@ Direct all the openstack services such as Nova, Neutron, Glance, Cinder etc to H
 
 **Nova**:
 ```sh
-openstack-config --set /etc/nova/nova.conf DEFAULT rabbit_host 10.200.84.101
+openstack-config --set /etc/nova/nova.conf DEFAULT rabbit_host 192.168.10.1
 openstack-config --set /etc/nova/nova.conf DEFAULT rabbit_port 5670
 ```
 **Neutron**:
 ```sh
-openstack-config --set /etc/neutron/neutron.conf DEFAULT rabbit_host 10.200.84.101
+openstack-config --set /etc/neutron/neutron.conf DEFAULT rabbit_host 192.168.10.1
 openstack-config --set /etc/neutron/neutron.conf DEFAULT rabbit_port 5670
 ```
 **Nova**:
 ```sh
-openstack-config --set /etc/nova/nova.conf DEFAULT rabbit_host 10.200.84.101
+openstack-config --set /etc/nova/nova.conf DEFAULT rabbit_host 192.168.10.1
 openstack-config --set /etc/nova/nova.conf DEFAULT rabbit_port 5670
 ```
 **Glance**:
 ```sh
-openstack-config --set /etc/glance/glance-api.conf DEFAULT rabbit_host 10.200.84.101
+openstack-config --set /etc/glance/glance-api.conf DEFAULT rabbit_host 192.168.10.1
 openstack-config --set /etc/glance/glance-api.conf DEFAULT rabbit_port 5670
 ```
 **Cinder**:
 ```sh
-openstack-config --set /etc/cinder/cinder.conf DEFAULT rabbit_host 10.200.84.101
+openstack-config --set /etc/cinder/cinder.conf DEFAULT rabbit_host 192.168.10.1
 openstack-config --set /etc/cinder/cinder.conf DEFAULT rabbit_port 5670
 ```
 Last step to configure all RabbitMQ nodes to join the cluster on restart
