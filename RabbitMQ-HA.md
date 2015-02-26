@@ -104,7 +104,7 @@ Now we are ready to start the HAProxy.
  service haproxy start
 ```
 ###Configure Openstack Services
-Direct all the openstack services such as Nova, Neutron, Glance, Cinder etc to HAProxy node as **10.200.84.101:5670** for RabbitMQ access.
+Direct all the openstack services such as Nova, Neutron, Glance, Cinder etc to HAProxy node as **192.168.10.1:5670** for RabbitMQ access.
 
 **Nova**:
 ```sh
