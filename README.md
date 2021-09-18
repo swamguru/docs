@@ -1,3 +1,2 @@
 # docs
-dfsdfs
-sfdf
+This is my Day 3 in DevOps
